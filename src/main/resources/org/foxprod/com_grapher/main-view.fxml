@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.foxprod.com_grapher.MainController">
    <children>
@@ -11,9 +12,9 @@
          <children>
             <HBox prefHeight="329.0" prefWidth="801.0">
                <children>
-                  <BarChart fx:id="chart" alternativeRowFillVisible="false" animated="false" barGap="0.0" categoryGap="0.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="591.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                  <BarChart fx:id="chart" alternativeRowFillVisible="false" animated="false" barGap="0.0" categoryGap="0.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="274.0" prefWidth="591.0" style="-fx-bar-gap: 0;" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                     <xAxis>
-                      <CategoryAxis fx:id="chartCategory" animated="false" endMargin="0.0" gapStartAndEnd="false" prefHeight="31.0" prefWidth="512.0" side="BOTTOM" startMargin="0.0" tickLength="5.0" />
+                      <CategoryAxis fx:id="chartCategory" animated="false" endMargin="0.0" gapStartAndEnd="false" prefHeight="37.0" prefWidth="521.0" side="BOTTOM" startMargin="0.0" tickLength="5.0" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="chartNumber" animated="false" autoRanging="false" forceZeroInRange="false" lowerBound="20.0" minorTickCount="10" prefHeight="248.0" prefWidth="40.0" side="LEFT" upperBound="120.0" />
@@ -35,11 +36,34 @@
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
                                           </ComboBox>
-                                          <TextField fx:id="speedField" editable="false" prefHeight="25.0" prefWidth="151.0" promptText="SPEED" style="-fx-background-radius: 0, 0;">
+                                          <Label fx:id="speedLabel" alignment="CENTER" contentDisplay="RIGHT" prefHeight="32.0" prefWidth="153.0" textAlignment="RIGHT">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                              </VBox.margin>
-                                          </TextField>
+                                             <font>
+                                                <Font name="Arial Bold" size="30.0" />
+                                             </font>
+                                          </Label>
+                                          <HBox prefHeight="0.0" prefWidth="163.0">
+                                             <children>
+                                                <Label fx:id="readingLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="11.0" prefWidth="153.0" textAlignment="RIGHT">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="30.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="dBLabel" prefHeight="37.0" prefWidth="132.0" text="dBA">
+                                                   <font>
+                                                      <Font name="Arial Bold" size="30.0" />
+                                                   </font>
+                                                   <HBox.margin>
+                                                      <Insets left="5.0" />
+                                                   </HBox.margin>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </VBox.margin>
+                                          </HBox>
                                           <Button fx:id="startButton" alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#onStartPressed" prefHeight="25.0" prefWidth="151.0" style="-fx-background-radius: 0, 0;" text="START">
                                              <VBox.margin>
                                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

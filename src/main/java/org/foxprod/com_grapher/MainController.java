@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -24,6 +25,9 @@ public class MainController {
     public NumberAxis chartNumber;
     public CategoryAxis chartCategory;
     public BarChart<String, Number> chart;
+    public Label readingLabel;
+    public Label speedLabel;
+    public Label dBLabel;
 
     private SerialPort portIn;
     private Thread readerThread;
@@ -36,6 +40,7 @@ public class MainController {
     public void initialize() {
         // gathering data on available ports, reported by OS
         getPorts();
+        dBLabel.setVisible(false);
         chart.getYAxis().setLabel("dBA");
         chart.getXAxis().setLabel("Seconds");
     }
@@ -46,12 +51,16 @@ public class MainController {
         private final TextField speedField;
         private final BarChart<String, Number> chart;
         private final Deque<Float> readingsQueue = new ArrayDeque<>(20);
+        private final Label readingLabel;
+        private final Label speedLabel;
 
-        public ComReader(SerialPort portIn, TextArea mainTextArea, TextField speedField, BarChart<String, Number> chart) {
+        public ComReader(SerialPort portIn, TextArea mainTextArea, TextField speedField, BarChart<String, Number> chart, Label readingLabel, Label speedLabel) {
             this.portIn = portIn;
             this.mainTextArea = mainTextArea;
             this.speedField = speedField;
             this.chart = chart;
+            this.readingLabel = readingLabel;
+            this.speedLabel = speedLabel;
         }
 
         @Override
@@ -78,9 +87,9 @@ public class MainController {
                             data = in.read();
                             // retrieving speed information ('S'/'F')
                             if (data == 83) {
-                                setText(speedField, "SLOW");
+                                updateSpeedLabel(true);
                             } else if (data == 70) {
-                                setText(speedField, "FAST");
+                                updateSpeedLabel(false);
                             } else {
                                 appendText(mainTextArea, "ERROR: Invalid speed byte\n");
                                 return;
@@ -94,12 +103,13 @@ public class MainController {
 
                             tempReading = intPart + (float) fracPart / 100;
 
+                            updateReadingLabel(tempReading);
+
                             updateChart(tempReading);
                         } else {
                             appendText(mainTextArea, "ERROR: Invalid status byte\n");
                         }
                     }
-
                 }
             } catch (IOException e) {
                 portIn.closePort();
@@ -115,7 +125,7 @@ public class MainController {
             readingsQueue.offer(newReading);
 
             javafx.application.Platform.runLater(() -> {
-                // Get the first (and only) series from the chart or create it if not present
+                // get the first (and only) series from the chart or create it if not present
                 BarChart.Series<String, Number> series;
                 if (chart.getData().isEmpty()) {
                     series = new BarChart.Series<>();
@@ -124,22 +134,44 @@ public class MainController {
                     series = chart.getData().getFirst();
                 }
 
-                // Update the series data
+                // update the series data
                 series.getData().clear(); // Clear old data to avoid duplicates
-                int index = -20; // Start index for shifting
+                int index = -20;
+                String color;
                 for (float reading : readingsQueue) {
-                    series.getData().add(new BarChart.Data<>(String.valueOf(index), reading));
+                    XYChart.Data<String, Number> data = new XYChart.Data<>(String.valueOf(index), reading);
+                    series.getData().add(data);
+                    data.getNode().setStyle("-fx-bar-fill: rgba(0,102,255,0.85);");
+
+//                    if (reading > 90) {color = "red";}
+//                    else if (reading < 90 && reading > 60) {color = "yellow";}
+//                    else {color = "green";}
+//
+//                    data.getNode().setStyle("-fx-bar-fill: " + color + ";");
                     index++;
                 }
             });
         }
 
-        private void appendText(TextArea textArea, String text) {
-            javafx.application.Platform.runLater(() -> textArea.appendText(text));
+        private void updateSpeedLabel(boolean speed){
+            javafx.application.Platform.runLater(() -> {
+                speedLabel.setText(speed?"SLOW":"FAST");
+            });
         }
 
-        private void setText(TextField textField, String text) {
-            javafx.application.Platform.runLater(() -> textField.setText(text));
+        private void updateReadingLabel(float reading) {
+            javafx.application.Platform.runLater(() -> {
+                String color;
+                if (reading > 90) {color = "red";}
+                else if ((reading < 90) && (reading > 60)) {color = "orange";}
+                else {color = "green";}
+                readingLabel.setStyle("-fx-text-fill: " + color + ";");
+                readingLabel.setText(String.format("%.1f", reading));
+            });
+        }
+
+        private void appendText(TextArea textArea, String text) {
+            javafx.application.Platform.runLater(() -> textArea.appendText(text));
         }
     }
 
@@ -164,6 +196,9 @@ public class MainController {
 
     @FXML
     private void onStartPressed(){
+        speedLabel.setVisible(true);
+        dBLabel.setVisible(true);
+        readingLabel.setVisible(true);
         readPort = true;
         stopButton.setDisable(false);
         startButton.setDisable(true);
@@ -176,13 +211,16 @@ public class MainController {
         portIn.setComPortTimeouts(SerialPort.TIMEOUT_READ_BLOCKING, 0, 0);
 
         if (!portsDropdown.getItems().isEmpty()) {
-            ComReader comReader = new ComReader(portIn, mainTextArea, speedField, chart);
+            ComReader comReader = new ComReader(portIn, mainTextArea, speedField, chart, readingLabel, speedLabel);
             readerThread = new Thread(comReader);
             readerThread.start();
         }
     }
 
     public void onStopPressed(ActionEvent actionEvent) throws InterruptedException {
+        speedLabel.setVisible(false);
+        dBLabel.setVisible(false);
+        readingLabel.setVisible(false);
         readPort = false;
         stopButton.setDisable(true);
         startButton.setDisable(false);

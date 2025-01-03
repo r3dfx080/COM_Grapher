@@ -7,7 +7,7 @@ plugins {
 }
 
 group 'org.foxprod'
-version '0.3'
+version '0.4'
 
 repositories {
   mavenCentral()
@@ -39,6 +39,7 @@ jlink {
   }
   options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
   launcher{
+    name = 'COM_Grapher'
     jvmArgs = ['-Dlog4j.configurationFile=./log4j2.xml']
   }
 }
