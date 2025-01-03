@@ -6,10 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.text.TextFlow;
 
 import java.io.IOException;
@@ -20,10 +17,16 @@ public class MainController {
     public Button startButton;
     public ComboBox portsDropdown;
     public Button stopButton;
+    public TextField speedField;
     private int speed,
                 highByte,
                 lowByte;
+
     private SerialPort portIn;
+
+    public volatile boolean readPort = true;
+    public volatile boolean error = false;
+
     @FXML
     public void initialize() {
         getPorts();
@@ -45,6 +48,7 @@ public class MainController {
 
     @FXML
     private void onStartPressed(){
+        readPort = true;
         stopButton.setDisable(false);
         startButton.setDisable(true);
         portsDropdown.setDisable(true);
@@ -66,20 +70,35 @@ public class MainController {
 
         InputStream in = portIn.getInputStream();
 
-//        new Thread(() -> {
-//            try {
-//                while (true) {
-//                    int data = in.read();
-//                    String text = String.valueOf((char) data);
-//                    Platform.runLater(() -> mainTextArea.appendText(text));
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }).start();
+        new Thread(() -> {
+            try {
+                while (readPort) {
+                    int data = in.read();
+                    if (data == 255) {
+                        data = in.read();
+                        if (data == 79){
+                            data = in.read();
+                            if (data == 83){speedField.setText("SLOW");}
+                            else if (data == 70){speedField.setText("FAST");}
+                            else {error = true;}
+                            if (!error){
+                                data = in.read();
+                                mainTextArea.appendText(data + ".");
+                                data = in.read();
+                                mainTextArea.appendText(data + "\n");
+                            }
+                        }
+                        else {error = true;}
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     public void onStopPressed(ActionEvent actionEvent) {
+        readPort = false;
         stopButton.setDisable(true);
         startButton.setDisable(false);
         portsDropdown.setDisable(false);
