@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.foxprod.com_grapher.MainController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="312.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.foxprod.com_grapher.MainController">
    <children>
       <VBox prefHeight="313.0" prefWidth="390.0">
          <children>
             <HBox prefHeight="268.0" prefWidth="487.0">
                <children>
-                  <TextArea fx:id="mainTextArea" prefHeight="268.0" prefWidth="313.0">
+                  <BarChart fx:id="chart" alternativeRowFillVisible="false" animated="false" barGap="0.0" categoryGap="0.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="461.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                    <xAxis>
+                      <CategoryAxis fx:id="chartCategory" animated="false" endMargin="0.0" gapStartAndEnd="false" prefHeight="28.0" prefWidth="399.0" side="BOTTOM" startMargin="0.0" tickLength="5.0" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis fx:id="chartNumber" animated="false" autoRanging="false" forceZeroInRange="false" lowerBound="20.0" minorTickCount="10" prefHeight="206.0" prefWidth="32.0" side="LEFT" upperBound="120.0" />
+                    </yAxis>
+                  </BarChart>
+                  <TextArea fx:id="mainTextArea" prefHeight="253.0" prefWidth="149.0">
                      <HBox.margin>
                         <Insets bottom="5.0" left="10.0" right="5.0" top="10.0" />
                      </HBox.margin></TextArea>

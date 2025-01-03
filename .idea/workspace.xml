@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="initial commit. create stable ASCII reader for COM port">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/foxprod/com_grapher/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/foxprod/com_grapher/main-view.fxml" afterDir="false" />
     </list>
@@ -36,6 +35,13 @@
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
