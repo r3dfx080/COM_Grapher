@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="initial commit. create stable ASCII reader for COM port">
+    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="add bar graph">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/foxprod/com_grapher/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/foxprod/com_grapher/main-view.fxml" afterDir="false" />
     </list>
@@ -120,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735779791701</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add bar graph">
+      <option name="closed" value="true" />
+      <created>1735898876874</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1735898876874</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +148,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit. create stable ASCII reader for COM port" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit. create stable ASCII reader for COM port" />
+    <MESSAGE value="add bar graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="add bar graph" />
   </component>
 </project>

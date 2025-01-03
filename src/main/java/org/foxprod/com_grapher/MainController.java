@@ -36,7 +36,8 @@ public class MainController {
     public void initialize() {
         // gathering data on available ports, reported by OS
         getPorts();
-        chart.getYAxis().setLabel("dB");
+        chart.getYAxis().setLabel("dBA");
+        chart.getXAxis().setLabel("Seconds");
     }
 
     public static class ComReader implements Runnable {
