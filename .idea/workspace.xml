@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="add color coded current reading label, make graphical changes">
+    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="prepare for packaging">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.COM_Grapher [jpackageImage]">
+  <component name="RunManager" selected="Application.MAIN">
     <configuration name="MAIN" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.foxprod.com_grapher.MainApplication" />
       <module name="COM_Grapher.main" />
@@ -236,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735937108382</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="prepare for packaging">
+      <option name="closed" value="true" />
+      <created>1735937752337</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1735937752337</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,6 +266,7 @@
     <MESSAGE value="add bar graph" />
     <MESSAGE value="add tab pane, make graphical changes" />
     <MESSAGE value="add color coded current reading label, make graphical changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="add color coded current reading label, make graphical changes" />
+    <MESSAGE value="prepare for packaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="prepare for packaging" />
   </component>
 </project>
