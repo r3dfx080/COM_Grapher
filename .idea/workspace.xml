@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="prepare for packaging">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="e5138ca8-9573-4042-a944-467540ab7a4c" name="Changes" comment="add readme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/foxprod/com_grapher/MainController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +245,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735937752337</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add readme">
+      <option name="closed" value="true" />
+      <created>1735966596456</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735966596456</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -267,6 +276,7 @@
     <MESSAGE value="add tab pane, make graphical changes" />
     <MESSAGE value="add color coded current reading label, make graphical changes" />
     <MESSAGE value="prepare for packaging" />
-    <option name="LAST_COMMIT_MESSAGE" value="prepare for packaging" />
+    <MESSAGE value="add readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add readme" />
   </component>
 </project>

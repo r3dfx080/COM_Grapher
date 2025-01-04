@@ -162,7 +162,7 @@ public class MainController {
         private void updateReadingLabel(float reading) {
             javafx.application.Platform.runLater(() -> {
                 String color;
-                if (reading > 90) {color = "red";}
+                if (reading >= 90) {color = "red";}
                 else if ((reading < 90) && (reading > 60)) {color = "orange";}
                 else {color = "green";}
                 readingLabel.setStyle("-fx-text-fill: " + color + ";");

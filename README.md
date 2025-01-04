@@ -4,6 +4,7 @@
 **COM Grapher** is a simple Java-based application for reading and visualizing sound level data from a sound level meter via a COM port. The application provides:
 - A real-time bar chart of the last 20 readings
 - A display of the current weighted sound level (in dBA)
+- Sound pressure readings have color coding (green: <=60dBA, orange: >60dBA & <90dBA, red: >=90dBA)
 - The response speed (FAST or SLOW)
 
 ## Features
@@ -12,6 +13,10 @@
 - **Response speed indicator**: displays whether the response speed is set to FAST or SLOW (150ms and 1s respectively)
 - **User-friendly interface**: simple controls with **Start** and **Stop** buttons
 
+<figure>
+    <img src="https://github.com/user-attachments/assets/21a729a3-fb3f-4037-bf84-b9f1ba3e9e00">
+    <figcaption>Primary application screen. User can select and open any COM port. Bar chart scroll right to left and shows last 20 readings</figcaption>
+</figure>
 
 ## Data format
 | SYNC | STATUS | SPEED | INTEGER | FRACTIONAL |
