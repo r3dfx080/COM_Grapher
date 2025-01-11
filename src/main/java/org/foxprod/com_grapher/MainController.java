@@ -76,6 +76,7 @@ public class MainController {
             try (InputStream in = portIn.getInputStream()) {
                 int intPart, fracPart;
                 float tempReading;
+                boolean speed; // true - slow, false - fast
 
                 while (MainController.readPort) {
                     int data = in.read();
@@ -83,16 +84,22 @@ public class MainController {
                     if (data == 255) {
                         data = in.read();
                         // checking status ('O'/'E')
-                        if (data == 79) {
+                        if (data != 79) {
+                            appendText(mainTextArea, "ERROR: Invalid status byte\n");
+                        }
+                        else
+                        {
                             data = in.read();
                             // retrieving speed information ('S'/'F')
                             if (data == 83) {
                                 updateSpeedLabel(true);
+                                speed = true;
                             } else if (data == 70) {
                                 updateSpeedLabel(false);
+                                speed = false;
                             } else {
                                 appendText(mainTextArea, "ERROR: Invalid speed byte\n");
-                                return;
+                                break;
                             }
                             // retrieving 2 bytes (integer + fractional part)
                             intPart = in.read();
@@ -105,9 +112,7 @@ public class MainController {
 
                             updateReadingLabel(tempReading);
 
-                            updateChart(tempReading);
-                        } else {
-                            appendText(mainTextArea, "ERROR: Invalid status byte\n");
+                            updateChart(tempReading, speed);
                         }
                     }
                 }
@@ -117,7 +122,8 @@ public class MainController {
             }
         }
 
-        private void updateChart(float newReading) {
+        // TODO Handle speed change
+        private void updateChart(float newReading, boolean speed) {
             // maintain a fixed size of 20 readings in the queue
             if (readingsQueue.size() >= 20) {
                 readingsQueue.poll();
@@ -135,20 +141,16 @@ public class MainController {
                 }
 
                 // update the series data
-                series.getData().clear(); // Clear old data to avoid duplicates
-                int index = -20;
-                String color;
+                series.getData().clear();
+                float index;
+                if (speed) index = -19;
+                else {index = -2.375F;}
                 for (float reading : readingsQueue) {
                     XYChart.Data<String, Number> data = new XYChart.Data<>(String.valueOf(index), reading);
                     series.getData().add(data);
                     data.getNode().setStyle("-fx-bar-fill: rgba(0,102,255,0.85);");
-
-//                    if (reading > 90) {color = "red";}
-//                    else if (reading < 90 && reading > 60) {color = "yellow";}
-//                    else {color = "green";}
-//
-//                    data.getNode().setStyle("-fx-bar-fill: " + color + ";");
-                    index++;
+                    if (speed) index++;
+                    else {index += 0.125F;}
                 }
             });
         }
@@ -176,6 +178,7 @@ public class MainController {
     }
 
 
+    // TODO Make port refresh button & function
     private void getPorts(){
         ObservableList<String> portsList = FXCollections.observableArrayList();
 
@@ -194,6 +197,7 @@ public class MainController {
         }
     }
 
+    // FIXME Handle control blocking correctly
     @FXML
     private void onStartPressed(){
         speedLabel.setVisible(true);
@@ -217,7 +221,7 @@ public class MainController {
         }
     }
 
-    public void onStopPressed(ActionEvent actionEvent) throws InterruptedException {
+    public void onStopPressed() {
         speedLabel.setVisible(false);
         dBLabel.setVisible(false);
         readingLabel.setVisible(false);

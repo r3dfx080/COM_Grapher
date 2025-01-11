@@ -14,14 +14,14 @@
 - **User-friendly interface**: simple controls with **Start** and **Stop** buttons
 
 <figure>
-    <img src="https://github.com/user-attachments/assets/21a729a3-fb3f-4037-bf84-b9f1ba3e9e00">
+    <img src="https://github.com/user-attachments/assets/fb2a8598-81f8-4f85-abc9-8783ded37b39" alt="">
     <figcaption>Primary application screen. User can select and open any COM port. Bar chart scroll right to left and shows last 20 readings</figcaption>
 </figure>
 
 ## Data format
 | SYNC | STATUS | SPEED | INTEGER | FRACTIONAL |
 |:----:|:------:|:-----:|:-------:|:----------:|
-|   0  |    1   |   2   |    3    |      4     |
+|  0   |   1    |   2   |    3    |     4      |
 
 - Byte 0 is **always 255**. Used for synchronization. Every valid sequence starts with it
 - Byte 1 - status byte, ASCII value for 'O' (OK) or 'E' (ERROR)
@@ -29,3 +29,6 @@
 - Byte 3 - integer part of current reading
 - Byte 4 - fractional part of current reading
 
+## Libraries Used
+- [jSerialComm](https://fazecast.github.io/jSerialComm/) - COM port communication
+- JavaFX - GUI

@@ -14,7 +14,7 @@
                <children>
                   <BarChart fx:id="chart" alternativeRowFillVisible="false" animated="false" barGap="0.0" categoryGap="0.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="274.0" prefWidth="591.0" style="-fx-bar-gap: 0;" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                     <xAxis>
-                      <CategoryAxis fx:id="chartCategory" animated="false" endMargin="0.0" gapStartAndEnd="false" prefHeight="37.0" prefWidth="521.0" side="BOTTOM" startMargin="0.0" tickLength="5.0" />
+                      <CategoryAxis fx:id="chartCategory" animated="false" endMargin="0.0" gapStartAndEnd="false" prefHeight="56.0" prefWidth="521.0" side="BOTTOM" startMargin="0.0" tickLength="5.0" />
                     </xAxis>
                     <yAxis>
                       <NumberAxis fx:id="chartNumber" animated="false" autoRanging="false" forceZeroInRange="false" lowerBound="20.0" minorTickCount="10" prefHeight="248.0" prefWidth="40.0" side="LEFT" upperBound="120.0" />
